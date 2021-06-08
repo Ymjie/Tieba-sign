@@ -1,5 +1,12 @@
 <?php
 function handler($event, $context) {
+    $logger = $GLOBALS['fcLogger'];
+    $logger->info($event);
+    // $logger->info($context);
+    // print_r($event);print_r($context);
+    $data = json_decode($event,true);
+    $bduss=$data['payload'];
+
     /*定义变量*/
     $tieba_header = array(
             'Content-Type: application/x-www-form-urlencoded',
@@ -19,8 +26,8 @@ function handler($event, $context) {
             'Referer: http://tieba.baidu.com/',
             'Connection: keep-alive',
         );
-    $bduss='改成你的bduss';
-    $logger = $GLOBALS['fcLogger'];
+
+
 	$logger->info('hello world');
     $tbs = gettbs($bduss,$firefox_header);
     if ($tbs == false){
